@@ -24,7 +24,7 @@ function sleepForXSeconds(){
 
 printf "\n${infoColor}[================================================]${NC}\n"
 printf "${infoColor}[================[${notifyColor}Setup Script${infoColor}]==================]${NC}\n"
-printf "${infoColor}[================[${notifyColor}Salt-Master${infoColor}]===================]${NC}\n"
+printf "${infoColor}[================[${notifyColor}Salt-Minion${infoColor}]===================]${NC}\n"
 printf "${infoColor}[================================================]${NC}\n"
 printf "${infoColor}Made by ${NC}${notifyColor}Martijn Dijkstra${NC}\n\n"
 
