@@ -21,6 +21,7 @@ ExecuteLoadKibanaDash="false"		#CHECK (GEEN FOUTEN)								#X
 ExecuteLoadFileBeatElastic="false"	#CHECK (GEEN FOUTEN)								#X
 ExecuteSetupFileBeat="true"		#
 ExecuteKubernetes="false"		#
+ExecuteTEST="false"				#
 
 #==========Interne Variabelen=======
 #enp0s3
