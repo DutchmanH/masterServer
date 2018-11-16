@@ -8,7 +8,7 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
 
-masterIP="10.0.2.12"
+masterIP=$(ifconfig enp0s3 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1)
 echo "filebeat"
 echo "#################### Filebeat Configuration Example #########################
 

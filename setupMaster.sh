@@ -8,25 +8,24 @@ LGREEN='\033[1;32m'
 BOLD="\e[1m"
 NC='\033[0m'
 #==========Execute======================#
-ExecutePackages="false"			#CHECK (GEEN FOUTEN)								#X
-ExecuteSaltMaster="false"		#CHECK (SALTSTACK werkt ping werkt met minion)					#Service Werkt
-ExecuteDocker="false"			#-----
-ExecuteElasticS="false"			#CHECK (Klein foutje bij ophalen key (geen internet?) 2e keer werkt wel)	#Service Werkt
-ExecuteKibana="false"			#CHECK (GEEN FOUTEN)								#Service Werkt
-ExecuteNGNIX="false"			#CHECK (GEEN FOUTEN) alleen wachtwoord moet ingevuld worden			#Service werkt localhost:5601 werkt
-ExecuteLogStash="false"			#CHECK (GEEN FOUTEN) later pas service check					#X
-ExecuteGenCert="false"			#CHECK (GEEN FOUTEN) alleen weet niet of cert nu goed is			#X
-ExecuteConfigLogSt="false"		#CHECK (GEEN FOUTEN) blijft alleen enable niet kunnen uitvoeren			#Service Werkt
-ExecuteLoadKibanaDash="false"		#CHECK (GEEN FOUTEN)								#X
-ExecuteLoadFileBeatElastic="false"	#CHECK (GEEN FOUTEN)								#X
+ExecutePackages="true"			#CHECK (GEEN FOUTEN)								#X
+ExecuteSaltMaster="true"		#CHECK (SALTSTACK werkt ping werkt met minion)					#Service Werkt
+ExecuteDocker="true"			#-----
+ExecuteElasticS="true"			#CHECK (Klein foutje bij ophalen key (geen internet?) 2e keer werkt wel)	#Service Werkt
+ExecuteKibana="true"			#CHECK (GEEN FOUTEN)								#Service Werkt
+ExecuteNGNIX="true"			#CHECK (GEEN FOUTEN) alleen wachtwoord moet ingevuld worden			#Service werkt localhost:5601 werkt
+ExecuteLogStash="true"			#CHECK (GEEN FOUTEN) later pas service check					#X
+ExecuteGenCert="true"			#CHECK (GEEN FOUTEN) alleen weet niet of cert nu goed is			#X
+ExecuteConfigLogSt="true"		#CHECK (GEEN FOUTEN) blijft alleen enable niet kunnen uitvoeren			#Service Werkt
+ExecuteLoadKibanaDash="true"		#CHECK (GEEN FOUTEN)								#X
+ExecuteLoadFileBeatElastic="true"	#CHECK (GEEN FOUTEN)								#X
 ExecuteSetupFileBeat="true"		#
-ExecuteKubernetes="false"		#
-ExecuteTEST="false"				#
+ExecuteKubernetes="true"		#
 
 #==========Interne Variabelen=======
 #enp0s3
 masterIP=$(ifconfig enp0s3 | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1)
-username="masterserver"
+usernameKibana="masterserver"
 
 function sleepForXSeconds(){
     sleepFor=$1
@@ -234,8 +233,8 @@ if [ $ExecuteNGNIX == "true" ]; then
 
 		printLineBetweenCode "Config aanpassen met wachtwoord"
 		printf "${notifyColor}[LETOP!]: ===================================================${NC}\n"
-		printf "${notifyColor}[LETOP!]: Voer nu het wachtwoord in voor de user: $username ${NC}\n"
-		echo "$username:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
+		printf "${notifyColor}[LETOP!]: Voer nu het wachtwoord in voor de user: $usernameKibana ${NC}\n"
+		echo "$usernameKibana:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users
 echo "    server {
         listen 80;
 
